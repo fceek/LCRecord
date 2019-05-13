@@ -1,6 +1,7 @@
 package com.company;
 public class Main {
 
+    // #771 Jewels and Stones
     int numJewelsInStones(String J, String S) {
         int count = 0;
         for (int i=0; i<J.length(); i++) {
@@ -13,6 +14,7 @@ public class Main {
         return count;
     }
 
+    // #1 Two Sum
     int[] twoSum(int[] nums, int target) {
         int limit = nums.length;
         for (int i=0; i<limit; i++) {
@@ -25,6 +27,7 @@ public class Main {
         return new int[] {0,0};
     }
 
+    // #7 Reverse Integer
     int reverse(int x) {
 
         long limit = 2147483647;
@@ -53,6 +56,7 @@ public class Main {
         return (int)ans;
     }
 
+    // #9 Palindrome Number
     boolean isPalindrome(int x) {
         if (x < 0) return false;
         if (x == 0) return true;
@@ -67,6 +71,7 @@ public class Main {
         return (revX == oriX);
     }
 
+    // #13 Roman to Integer
     int romanToInt(String s) {
         int roman = 0;
         for (int i = 0; i < s.length() ; i++) {
@@ -119,9 +124,50 @@ public class Main {
         return roman;
     }
 
+    // #938 Range Sum of BST
+    // Not full, only LeetCode required part
+    int RSBans=0;
+    int rangeSumBST(TreeNode root, int L, int R) {
+        RSBans = 0;
+        BSTRec(root, L, R);
+        return RSBans;
+    }
+
+    private void BSTRec(TreeNode _node, int L, int R) {
+        if (_node != null) {
+            if (_node.val <= R && _node.val >= L) RSBans += _node.val;
+            if (_node.val > L) BSTRec(_node.left, L, R);
+            if (_node.val < R) BSTRec(_node.right, L, R);
+        }
+    }
+
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
+    }
+
+    // #14 Longest Common Prefix
+    String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        String lcp = strs[0];
+        for (String thisStr: strs) {
+            if (thisStr.length() < lcp.length()) lcp = lcp.substring(0,thisStr.length());
+            for (int i = thisStr.length(); i >= 0; i--) {
+                if (thisStr.startsWith(lcp)) break;
+                lcp = lcp.substring(0,lcp.length()-1);
+            }
+        }
+        return lcp;
+    }
+
+    // Test Area
     public static void main(String[] args) {
-        int[] a={2,7,11,15};
-        int solution = new Main().romanToInt("MCMXCIV");
+        String[] a={"acbb","a"};
+        String solution = new Main().longestCommonPrefix(a);
         System.out.println(solution);
     }
+
 }
+
