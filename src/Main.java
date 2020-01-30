@@ -1,4 +1,3 @@
-package com.company;
 public class Main {
 
     // #771 Jewels and Stones
@@ -161,13 +160,5 @@ public class Main {
         }
         return lcp;
     }
-
-    // Test Area
-    public static void main(String[] args) {
-        String[] a={"acbb","a"};
-        String solution = new Main().longestCommonPrefix(a);
-        System.out.println(solution);
-    }
-
 }
 
