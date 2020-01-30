@@ -160,5 +160,35 @@ public class Main {
         }
         return lcp;
     }
+
+    // #1313 Decompress Run-Length Encoded List
+    int[] decompressRLElist(int[] nums) {
+        int targetLength = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i % 2 == 0) targetLength += nums[i];
+        }
+
+        int[] res = new int[targetLength];
+        int ptr = 0;
+        for (int i = 0; i < nums.length; i+=2) {
+            for (int j = 0; j < nums[i]; j++) {
+                res[ptr] = nums[i+1];
+                ptr++;
+            }
+        }
+        return res;
+    }
+
+    // 1108 Defanging an IP Address
+    String defangIPaddr(String address) {
+        String res = "";
+        String[] splited = address.split("\\.");
+        for (int i = 0; i < splited.length - 1; i++) {
+            res = res + splited[i] + "[.]";
+        }
+        res = res + splited[splited.length - 1];
+        return res;
+    }
 }
 
